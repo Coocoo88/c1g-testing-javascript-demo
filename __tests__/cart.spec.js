@@ -29,9 +29,23 @@ test("Entfernt ein Produkt aus dem Warenkorb", () => {
     expect(cart.products.find(p => p.id === 1)).toBeUndefined();
 });
 
-test("Waren Korb nicht korrekt zurücksetzbar", ()=>{
+test("Waren Korb korrekt zurücksetzen", ()=>{
     const cart = new Cart();
     cart.addProductById(1);
     cart.clearCart();
     expect(cart.products).toHaveLength(0);
+});
+
+test("Berechnet den 10% Rabatt korrekt", ()=>{
+    const cart = new Cart();
+    const total = (100);
+    cart.applyDiscount("SAVE10");
+    expect(cart.discount).toBe(10);
+});
+
+test("Berechnet den 20% Rabatt korrekt", ()=>{
+    const cart = new Cart();
+    const total = (100);
+    cart.applyDiscount("SAVE20");
+    expect(cart.discount).toBe(20);
 });
